@@ -1,4 +1,30 @@
 import React, { useEffect, useState, useRef } from 'react';
+
+// ── Avatar: shows profile pic or a coloured initial circle ──────────────────
+const Avatar = ({ src, name = '', size = 8, className = '' }) => {
+  const [broken, setBroken] = useState(!src);
+  const initial = (name || '?')[0].toUpperCase();
+  const colors = ['bg-purple-600','bg-blue-600','bg-green-600','bg-red-500','bg-yellow-500','bg-pink-500'];
+  const color  = colors[initial.charCodeAt(0) % colors.length];
+  const px     = `w-${size} h-${size}`;
+
+  if (!src || broken) {
+    return (
+      <div className={`${px} rounded-full ${color} flex items-center justify-center text-white font-bold text-sm shrink-0 ${className}`}>
+        {initial}
+      </div>
+    );
+  }
+  return (
+    <img
+      className={`${px} rounded-full object-cover shrink-0 ${className}`}
+      src={src}
+      alt={name}
+      onError={() => setBroken(true)}
+    />
+  );
+};
+// ────────────────────────────────────────────────────────────────────────────
 import { motion, AnimatePresence } from 'framer-motion';
 import Card from '../../components/card/card';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
@@ -45,7 +71,7 @@ export default function Message() {
         `${import.meta.env.VITE_APP_BACKEND_URL}/api/message/${activeConID}`,
         { withCredentials: true }
       );
-      setMeesages(res.data.message);
+      setMeesages(res.data.messages || []);
     } catch (err) {
       console.log(err);
       toast.error(err?.response?.data?.error);
@@ -53,29 +79,41 @@ export default function Message() {
   };
 
   useEffect(() => {
-    const userData = localStorage.getItem('userInfo');
-    setOwnData(userData ? JSON.parse(userData) : null);
     fetchConversationonLoad();
   }, []);
 
   const fetchConversationonLoad = async () => {
     try {
+      // Fetch own user data fresh from backend (not stale localStorage)
+      const selfRes = await axios.get(
+        `${import.meta.env.VITE_APP_BACKEND_URL}/api/auth/self`,
+        { withCredentials: true }
+      );
+      const freshOwnData = selfRes.data.user;
+      setOwnData(freshOwnData);
+      localStorage.setItem('userInfo', JSON.stringify(freshOwnData));
+
       const res = await axios.get(
         `${import.meta.env.VITE_APP_BACKEND_URL}/api/conversation/get-conversation`,
         { withCredentials: true }
       );
-      setConversation(res.data.conversastion);
-      setActiveConId(res.data.conversastion[0]?._id);
-      socket.emit('joinConversation', res.data.conversastion[0]?._id);
+      const convList = res.data.conversastion || [];
+      setConversation(convList);
 
-      const ownId = ownData?._id;
-      const arr = res.data.conversastion[0]?.members?.filter(
-        (it) => it._id !== ownId
-      );
-      setselectedConvDetails(arr[0]);
+      if (convList.length > 0) {
+        const firstConv = convList[0];
+        setActiveConId(firstConv._id);
+        socket.emit('joinConversation', firstConv._id);
+
+        // Filter out self from members to get the other person
+        const otherMembers = firstConv?.members?.filter(
+          (it) => it._id?.toString() !== freshOwnData?._id?.toString()
+        );
+        setselectedConvDetails(otherMembers?.[0] || null);
+      }
     } catch (err) {
       console.log(err);
-      alert('Something Went Wrong');
+      toast.error(err?.response?.data?.error || 'Failed to load conversations');
     }
   };
 
@@ -133,7 +171,7 @@ export default function Message() {
       setImageLink(null);
     } catch (err) {
       console.log(err);
-      alert('Something Went Wrong');
+      toast.error(err?.response?.data?.error || 'Failed to send message');
     }
   };
 
@@ -387,15 +425,9 @@ export default function Message() {
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: 0.7, duration: 0.4 }}
                   >
-                    <motion.img
-                      className="w-[40px] h-[40px] cursor-pointer rounded-full"
-                      src={selectedConvDetails?.profile_pic}
-                      alt=""
-                      whileHover={{ scale: 1.15, rotate: 5 }}
-                      transition={{ type: 'spring', stiffness: 300 }}
-                    />
+                    <Avatar src={selectedConvDetails?.profile_pic} name={selectedConvDetails?.f_name} size={10} />
                     <div className="my-2">
-                      <div className="text-sm">
+                      <div className="text-sm font-semibold">
                         {selectedConvDetails?.f_name}
                       </div>
                       <div className="text-sm text-gray-500">
@@ -423,13 +455,7 @@ export default function Message() {
                           }}
                         >
                           <div className="shrink-0">
-                            <motion.img
-                              className="w-8 h-8 cursor-pointer rounded-full"
-                              src={item?.sender?.profile_pic}
-                              alt=""
-                              whileHover={{ scale: 1.2, rotate: 360 }}
-                              transition={{ duration: 0.5 }}
-                            />
+                            <Avatar src={item?.sender?.profile_pic} name={item?.sender?.f_name} size={8} />
                           </div>
                           <div className="w-full mb-2">
                             <div className="text-md">{item?.sender?.f_name}</div>

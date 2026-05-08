@@ -61,7 +61,7 @@ export default function Profile() {
         }
         catch (err) {
             console.log(err);
-            alert("something went wrong")
+            toast.error(err?.response?.data?.error || "Something went wrong. Please log in again.");
         }
     }
 
@@ -107,26 +107,24 @@ export default function Profile() {
 
         }).catch(err => {
             console.log(err)
-            alert("something went wrong")
+            toast.error(err?.response?.data?.error || "Update failed. Please try again.")
         })
 
 
     }
 
     const amIFriend = () => {
-        return userData?.friends?.includes(ownData._id) ?? false;
+        return userData?.friends?.some(id => id.toString() === ownData._id.toString()) ?? false;
     }
 
 
     const isInPendingList = () => {
-
-        let arr = userData?.pending_friends?.filter((item) => { return item === ownData._id })
+        let arr = userData?.pending_friends?.filter((item) => { return item.toString() === ownData._id.toString() })
         return arr?.length;
     }
 
     const isInSelfPendingList = () => {
-
-        let arr = ownData?.pending_friends?.filter((item) => { return item === userData._id })
+        let arr = ownData?.pending_friends?.filter((item) => { return item.toString() === userData._id.toString() })
         return arr?.length;
     }
 

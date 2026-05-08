@@ -5,11 +5,11 @@ const NotificationModal = require('../model/Notification');
 const { OAuth2Client } = require('google-auth-library');
 const jwt = require("jsonwebtoken");
 
+const isProduction = process.env.NODE_ENV === 'production';
 const cookieOptions = {
     httpOnly: true,
-    secure: true,
-    sameSite: 'None'
-
+    secure: isProduction,         // false on localhost, true in production
+    sameSite: isProduction ? 'None' : 'Lax'  // Lax works on localhost
 };
 
 const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);

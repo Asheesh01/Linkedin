@@ -22,7 +22,7 @@ try{
                 let messages=await messageModal.find({
                     conversation:convId
                 }).populate("sender")
-                return res.status(200).json({message:"Fetched Message Successfully",message:messages})
+                return res.status(200).json({ message: "Fetched Message Successfully", messages: messages })
         }
          catch (err) {
         return res.status(500).json({ error: "server error", message: err.message });
