@@ -41,19 +41,23 @@ export default function AboutModal({ handleEditFunc, selfData }) {
             <div className="w-full mb-4">
                 <label htmlFor="About">About*</label>
                 <br />
-                <textarea value={data.about} onChange={(e) => onChangeHandle(e, 'about')} className=" className=p-2 mt-1 w-full border-1 rounded-md" id="About" cols={10} rows={3}></textarea>
+                <textarea value={data.about} onChange={(e) => onChangeHandle(e, 'about')} 
+                className=" className=p-2 mt-1 w-full border-1 rounded-md"
+                 id="About" cols={10    } rows={3}></textarea>
             </div>
 
 
             <div className="w-full mb-4">
                 <label htmlFor="skills">Skills*(Add by Seperating comma)</label>
                 <br />
-                <textarea value={data.skillInp} onChange={(e) => onChangeHandle(e, 'skillInp')} className="p-2 mt-1 w-full border-1 rounded-md" id="skills" cols={10} rows={3}></textarea>
+                <textarea value={data.skillInp} onChange={(e) => onChangeHandle(e, 'skillInp')} 
+                className="p-2 mt-1 w-full border-1 rounded-md" id="skills"
+                 cols={10} rows={3}></textarea>
             </div>
 
             <div className="w-full mb-2  ">
                 <div>
-                    <label htmlFor="resumeUpload" className="p-2 bg-purple-800 text-white rounded-lg cursor-pointer">Resume Upload</label>
+                    <label htmlFor="resumeUpload" className="p-2 bg-amber-800 text-white rounded-lg cursor-pointer">Resume Upload</label>
                 </div>
 
                 <input onChange={handleInputImage} type="file" className="hidden" id="resumeUpload" />
@@ -61,7 +65,7 @@ export default function AboutModal({ handleEditFunc, selfData }) {
                     data.resume && <div className="my-2">{data.resume}</div>
                 }
             </div>
-            <div className="bg-purple-900 rounded-2xl w-fit p-2 text-white cursor-pointer" onClick={handleonSave}>Save</div>
+            <div className="bg-amber-800 rounded-2xl w-fit p-2 text-white cursor-pointer" onClick={handleonSave}>Save</div>
 
 
 

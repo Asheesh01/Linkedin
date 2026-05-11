@@ -71,7 +71,7 @@
               <label className="cursor-pointer" htmlFor="inputfile"><ImageIcon /></label>
               <input type="file" className="hidden" id="inputfile" accept="image/*" onChange={handleInputImage} />
             </div>
-            <div className="bg-blue-950 text-white py-1 px-3 h-fit cursor-pointer rounded-2xl" onClick={handlePost} >Post</div>
+            <div className="bg-amber-950 text-white py-1 px-3 h-fit cursor-pointer rounded-2xl" onClick={handlePost} >Post</div>
           </div>
 
 

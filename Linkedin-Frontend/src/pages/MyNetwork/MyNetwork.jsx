@@ -143,7 +143,7 @@ export default function MyNetwork() {
 
     return (
         <motion.div 
-            className="px-[25px] xl:px-[200px] py-[36px] flex flex-col gap-[20px] w-full bg-purple-200 mt-5"
+            className="px-[25px] xl:px-[200px] py-[36px] flex flex-col gap-[20px] w-full bg-amber-200 mt-5"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}

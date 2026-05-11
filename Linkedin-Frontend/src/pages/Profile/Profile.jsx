@@ -149,7 +149,8 @@ export default function Profile() {
         if (checkFriendStatus() === "Request Sent") return;
 
         if (checkFriendStatus() === "Connect") {
-            await axios.post(`${import.meta.env.VITE_APP_BACKEND_URL}/api/auth/sendFriendReq`, { receiver: userData?._id }, { withCredentials: true }).then(res => {
+            await axios.post(`${import.meta.env.VITE_APP_BACKEND_URL}/api/auth/sendFriendReq`, 
+                { receiver: userData?._id }, { withCredentials: true }).then(res => {
                 toast.success(res.data.message)
                 setTimeout(() => {
                     window.location.reload();
@@ -161,7 +162,8 @@ export default function Profile() {
             })
         }
         else if (checkFriendStatus() == "Approve Request") {
-            await axios.post(`${import.meta.env.VITE_APP_BACKEND_URL}/api/auth/acceptFriendRequest`, { friendId: userData?._id }, { withCredentials: true }).then(res => {
+            await axios.post(`${import.meta.env.VITE_APP_BACKEND_URL}/api/auth/acceptFriendRequest`,
+                 { friendId: userData?._id }, { withCredentials: true }).then(res => {
                 toast.success(res.data.message)
                 setTimeout(() => {
                     window.location.reload();
@@ -172,7 +174,8 @@ export default function Profile() {
             })
         }
         else {
-            await axios.delete(`${import.meta.env.VITE_APP_BACKEND_URL}/api/auth/removeFromFriendList/${userData?._id}`, { withCredentials: true }).then(res => {
+            await axios.delete(`${import.meta.env.VITE_APP_BACKEND_URL}/api/auth/removeFromFriendList/$
+                {userData?._id}`, { withCredentials: true }).then(res => {
                 toast.success(res.data.message)
                 setTimeout(() => {
                     window.location.reload();
@@ -322,7 +325,7 @@ export default function Profile() {
 
     return (
         <motion.div 
-            className="px-5 xl:px-[200px] py-5 flex flex-col gap-5 w-full mt-5 pt-12 bg-purple-200"
+            className="px-5 xl:px-[200px] py-5 flex flex-col gap-5 w-full mt-5 pt-12 bg-amber-200"
             initial="hidden"
             animate="visible"
             variants={containerVariants}
@@ -398,7 +401,7 @@ export default function Profile() {
                                         <div className="md:flex w-full justify-between">
                                             <div className="my-5 flex gap-5">
                                                 <motion.div 
-                                                    className="cursor-pointer p-2 border-1 font-semibold text-white bg-purple-900 rounded-lg"
+                                                    className="cursor-pointer p-2 border-1 font-semibold text-white bg-amber-900 rounded-lg"
                                                     variants={buttonVariants}
                                                     whileHover="hover"
                                                     whileTap="tap"
@@ -406,7 +409,7 @@ export default function Profile() {
                                                     Open to
                                                 </motion.div>
                                                 <motion.div 
-                                                    className="cursor-pointer p-2 border-1 font-semibold text-white bg-purple-900 rounded-lg"
+                                                    className="cursor-pointer p-2 border-1 font-semibold text-white bg-amber-900 rounded-lg"
                                                     onClick={copyToClipBoard}
                                                     variants={buttonVariants}
                                                     whileHover="hover"
@@ -417,7 +420,7 @@ export default function Profile() {
                                                 {userData?._id === ownData?._id && (
                                                     <motion.div 
                                                         onClick={handleLogout} 
-                                                        className="cursor-pointer p-2 border-1 font-semibold text-white bg-purple-900 rounded-lg"
+                                                        className="cursor-pointer p-2 border-1 font-semibold text-white bg-amber-900 rounded-lg"
                                                         variants={buttonVariants}
                                                         whileHover="hover"
                                                         whileTap="tap"
@@ -430,7 +433,7 @@ export default function Profile() {
                                             <div className="my-5 flex gap-5">
                                                 {amIFriend() && (
                                                     <motion.div 
-                                                        className="cursor-pointer p-2 border-1 font-semibold text-white bg-purple-900 rounded-lg" 
+                                                        className="cursor-pointer p-2 border-1 font-semibold text-white bg-amber-900 rounded-lg" 
                                                         onClick={messagemodel}
                                                         variants={buttonVariants}
                                                         whileHover="hover"
@@ -442,7 +445,7 @@ export default function Profile() {
                                                 {userData?._id === ownData?._id ? null : (
                                                     <motion.div 
                                                         onClick={handleSendFriendRequest} 
-                                                        className="cursor-pointer p-2 border-1 font-semibold text-white bg-purple-900 rounded-lg"
+                                                        className="cursor-pointer p-2 border-1 font-semibold text-white bg-amber-900 rounded-lg"
                                                         variants={buttonVariants}
                                                         whileHover="hover"
                                                         whileTap="tap"
@@ -489,7 +492,7 @@ export default function Profile() {
                                 {userData?.skills?.map((item, index) => (
                                     <motion.div 
                                         key={index} 
-                                        className="py-1 px-3 cursor-pointer bg-purple-900 text-white rounded-lg"
+                                        className="py-1 px-3 cursor-pointer bg-amber-900 text-white rounded-lg"
                                         custom={index}
                                         variants={skillVariants}
                                         whileHover={{ scale: 1.1, y: -5 }}

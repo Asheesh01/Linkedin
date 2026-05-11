@@ -40,7 +40,7 @@ export default function Landing(props) {
     };
 
     return (
-        <div className="my-4 py-[50px] md:pl-[120px] px-5 md:flex justify-between mt-[92px] bg-purple-200">
+        <div className=" py-[50px] md:pl-[120px] px-5 md:flex justify-between mt-[80px] bg-amber-200">
             <motion.div 
                 className="md:w-[40%]"
                 variants={containerVariants}
@@ -102,7 +102,7 @@ export default function Landing(props) {
             >
                 <img 
                     className="h-full w-full" 
-                    src="https://media.licdn.com/media//AAYAAgSrAAgAAQAAAAAAAGM6w-NyPk-_SVikYiCJ6V3Z-Q.png" 
+                    src="https://static.vecteezy.com/system/resources/previews/000/462/348/original/education-tree-concept-vector.jpg" 
                     alt="image"
                 />
             </motion.div>

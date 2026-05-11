@@ -1,9 +1,5 @@
 const messageModal=require("../model/message");
-
-
 exports.sendMessage=async(req,res)=>{
-
-
 try{
     let{conversation,message,picture}=req.body;
 

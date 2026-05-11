@@ -152,7 +152,7 @@ export default function Post({ profile, item, personalData }) {
                                 value={commentInput}
                                 onChange={(e)=>setCommentInput(e.target.value)}
                             />
-                            <button type="submit" className="bg-purple-900 w-[60px] h-[45px] rounded-2xl hover:bg-purple-800 cursor-pointer flex items-center text-white py-1 px-3">
+                            <button type="submit" className="bg-amber-900 w-[60px] h-[45px] rounded-2xl hover:bg-amber-800 cursor-pointer flex items-center text-white py-1 px-3">
                                 Send
                             </button>
                         </form>

@@ -58,7 +58,7 @@ export default function Login(props) {
     };
 
     return (
-        <div className="flex flex-col min-h-screen bg-purple-200 w-full items-center justify-center px-4 py-10">
+        <div className="flex flex-col min-h-screen bg-amber-200 w-full items-center justify-center px-4 py-10">
             <motion.div
                 variants={containerVariants}
                 initial="hidden"
@@ -72,8 +72,8 @@ export default function Login(props) {
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: 0.1 }}
                 >
-                    <span className="text-blue-800 font-bold text-3xl">in</span>
-                    <span className="text-gray-700 font-semibold text-xl">LinkedIn</span>
+                    <span className="text-blue-800 font-bold text-3xl">cs</span>
+                    <span className="text-gray-700 font-semibold text-xl">Connect Sphere</span>
                 </motion.div>
 
                 {/* Card */}
@@ -198,7 +198,7 @@ export default function Login(props) {
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.6 }}
                 >
-                    New to LinkedIn?{" "}
+                    New to Connect SPhere?{" "}
                     <Link to="/signUp" className="text-blue-700 font-semibold hover:underline cursor-pointer">
                         Join now
                     </Link>

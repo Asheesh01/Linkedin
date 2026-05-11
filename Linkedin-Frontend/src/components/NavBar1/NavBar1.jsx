@@ -5,7 +5,9 @@ import { motion } from "framer-motion";
 export default function Navbar() {
     return (
         <motion.nav
-            className="w-full fixed top-0 left-0 z-50 bg-white/90 backdrop-blur-md shadow-sm md:px-[100px] px-[20px] flex justify-between py-3 box-border items-center border-b border-gray-100"
+            className="w-full fixed top-0 left-0 z-50 bg-white/90 backdrop-blur-md 
+            shadow-sm md:px-[100px] px-[20px] flex justify-between py-3 box-border 
+            items-center border-b border-gray-100"
             initial={{ y: -80, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ type: "spring", stiffness: 120, damping: 20, duration: 0.6 }}
@@ -18,10 +20,10 @@ export default function Navbar() {
                     whileTap={{ scale: 0.95 }}
                     transition={{ type: "spring", stiffness: 300 }}
                 >
-                    <div className="bg-blue-700 text-white font-bold text-xl w-9 h-9 flex items-center justify-center rounded-md">
-                        in
+                    <div className="bg-amber-700 text-white font-bold text-xl w-9 h-9 flex items-center justify-center rounded-md">
+                        cs
                     </div>
-                    <span className="text-gray-800 font-bold text-xl hidden sm:block">Linked<span className="text-blue-700">In</span></span>
+                    <span className="text-gray-800 font-bold text-xl hidden sm:block">Connect<span className="text-amber-700">Sphere</span></span>
                 </motion.div>
             </Link>
 

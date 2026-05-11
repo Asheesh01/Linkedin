@@ -48,7 +48,7 @@ export default function Feeds() {
   };
 
   return (
-    <div className="bg-purple-200 px-[25px] xl:px-[200px] py-[30px] flex gap-[20px] w-full mt-5 min-h-screen">
+    <div className="bg-amber-200 px-[25px] xl:px-[200px] py-[30px] flex gap-[20px] w-full mt-5 min-h-screen">
 
       {/* Left Side */}
       <motion.div 

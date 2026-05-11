@@ -175,7 +175,7 @@ export default function Notification() {
 
     return (
         <motion.div 
-            className="min-h-screen flex mt-5 py-9 w-full bg-purple-200 px-[50px] xl:px-[250px]"
+            className="min-h-screen flex mt-5 py-9 w-full bg-amber-200 px-[50px] xl:px-[250px]"
             variants={containerVariants}
             initial="hidden"
             animate="visible"

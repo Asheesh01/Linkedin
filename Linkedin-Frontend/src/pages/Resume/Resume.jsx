@@ -151,7 +151,7 @@ export default function Resume() {
 
   return (
     <motion.div
-      className="w-full px-5 xl:px-[200px] py-9 bg-purple-200 gap-5 flex mt-5 min-h-screen"
+      className="w-full px-5 xl:px-[200px] py-9 bg-amber-200 gap-5 flex mt-5 min-h-screen"
       variants={containerVariants}
       initial="hidden"
       animate="visible"
@@ -169,7 +169,7 @@ export default function Resume() {
               <div className="flex gap-2">
                 <motion.button
                   onClick={() => fileInputRef.current?.click()}
-                  className="text-sm text-blue-700 border border-blue-700 px-3 py-1 rounded-full hover:bg-blue-50 cursor-pointer transition-colors"
+                  className="text-sm text-amber-700 border border-amber-700 px-3 py-1 rounded-full hover:bg-blue-50 cursor-pointer transition-colors"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -240,8 +240,8 @@ export default function Resume() {
                 <motion.div
                   className={`border-2 border-dashed rounded-2xl p-12 flex flex-col items-center justify-center gap-4 cursor-pointer transition-colors ${
                     dragOver
-                      ? "border-purple-500 bg-purple-50"
-                      : "border-gray-300 hover:border-purple-400 hover:bg-purple-50/50"
+                      ? "border-amber-500 bg-purple-50"
+                      : "border-gray-300 hover:border-amber-400 hover:bg-purple-50/50"
                   }`}
                   onDrop={handleDrop}
                   onDragOver={handleDragOver}
@@ -260,7 +260,7 @@ export default function Resume() {
                         exit={{ opacity: 0 }}
                       >
                         <motion.div
-                          className="w-16 h-16 border-4 border-purple-200 border-t-purple-700 rounded-full"
+                          className="w-16 h-16 border-4 border-purple-200 border-t-amber-700 rounded-full"
                           animate={{ rotate: 360 }}
                           transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
                         />
@@ -299,7 +299,7 @@ export default function Resume() {
                           Supported: JPG, PNG, PDF · Max 10MB
                         </p>
                         <motion.div
-                          className="mt-2 px-6 py-2.5 bg-purple-700 text-white rounded-full text-sm font-semibold"
+                          className="mt-2 px-6 py-2.5 bg-amber-700 text-white rounded-full text-sm font-semibold"
                           whileHover={{ scale: 1.05, boxShadow: "0 8px 20px rgba(109, 40, 217, 0.4)" }}
                           whileTap={{ scale: 0.95 }}
                         >

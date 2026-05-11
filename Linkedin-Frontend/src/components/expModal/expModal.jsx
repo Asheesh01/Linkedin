@@ -40,7 +40,8 @@ export default function ExpModal({ handleEditFunc, selfData, updateExp, setUpdat
                 <div className="w-full mb-4">
                     <label htmlFor="full-name">Role*</label>
                     <br />
-                    <input type="text" value={data.designation} onChange={(e) => { onChangeHandle(e, 'designation') }} className="p-2 mt-1 w-full border-1 rounded-md" placeholder="Roll" />
+                    <input type="text" value={data.designation} onChange={(e) => { onChangeHandle(e, 'designation') }}
+                     className="p-2 mt-1 w-full border-1 rounded-md" placeholder="Roll" />
                 </div>
 
                 <div className="w-full mb-4">

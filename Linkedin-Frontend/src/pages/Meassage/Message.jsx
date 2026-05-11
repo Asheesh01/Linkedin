@@ -307,7 +307,7 @@ export default function Message() {
 
   return (
     <motion.div 
-      className="px-5 py-9 xl:px-[200px] bg-purple-200 flex gap-5 w-full mt-5"
+      className="px-5 py-9 xl:px-[200px] bg-amber-200 flex gap-5 w-full mt-5"
       initial="hidden"
       animate="visible"
       variants={containerVariants}
@@ -571,7 +571,7 @@ export default function Message() {
                     {!loading ? (
                       <motion.div
                         key="send-button"
-                        className="bg-purple-900 px-3 py-1 rounded-2xl cursor-pointer text-white"
+                        className="bg-amber-900 px-3 py-1 rounded-2xl cursor-pointer text-white"
                         onClick={haandleSendMessage}
                         initial={{ scale: 0, rotate: -180 }}
                         animate={{ scale: 1, rotate: 0 }}

@@ -23,7 +23,9 @@ export default function Advertisment() {
                 <div className="px-5 my-5 mx-auto">
                     <div className="text-sm font-semibold text-center">{userData?.f_name}</div>
                     <div className="text-sm my-3 text-center">Get the latest jobs and industry news</div>
-                    <div className="text-sm my-1 border-2 text-center p-2 font-bold border-blue-950 text-white bg-purple-900 rounded-2xl cursor-pointer" onClick={() => window.dispatchEvent(new Event("focusSearch"))}>Explore</div>
+                    <div className="text-sm my-1 border-2 text-center p-2 font-bold border-amber-950
+                     text-white bg-amber-900 rounded-2xl cursor-pointer" 
+                     onClick={() => window.dispatchEvent(new Event("focusSearch"))}>Explore</div>
                 </div>
             </Card>
         </div>

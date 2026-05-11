@@ -17,13 +17,19 @@ export default function EditInfoModel({ handleEditFunc, selfData }) {
                 <div className="w-full mb-4">
                     <label htmlFor="full-name">Full Name</label>
                     <br />
-                    <input value={data.f_name} onChange={(e) => { onChangeHandle(e, 'f_name') }} type="text" className="p-2 mt-1 w-full border-1 rounded-md" placeholder="Enter Full Name" />
+                    <input value={data.f_name} onChange={(e) => 
+                    { onChangeHandle(e, 'f_name') }} type="text" 
+                    className="p-2 mt-1 w-full border-1 rounded-md" 
+                    placeholder="Enter Full Name" />
                 </div>
 
                 <div className="w-full mb-4">
                     <label htmlFor="full-name">Headline</label>
                     <br />
-                    <textarea value={data.headline} onChange={(e) => { onChangeHandle(e, 'headline') }} className=" className=p-2 mt-1 w-full border-1 rounded-md" cols={10} rows={3}></textarea>
+                    <textarea value={data.headline} onChange={(e) => 
+                        { onChangeHandle(e, 'headline') }} className="
+                        className=p-2 mt-1 w-full border-1 rounded-md" cols={10} 
+                        rows={3}></textarea>
                 </div>
 
                 <div className="w-full mb-4">

@@ -32,7 +32,7 @@ export default function Allactivities() {
 
     return (
         <motion.div 
-            className="flex px-5 xl:px-[250px] py-9 gap-5 w-full mt-5 bg-purple-200"
+            className="flex px-5 xl:px-[250px] py-9 gap-5 w-full mt-5 bg-amber-200"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ 
