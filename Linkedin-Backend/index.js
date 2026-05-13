@@ -14,9 +14,9 @@ const PORT = process.env.PORT || 5000;
 const allowedOrigins = [
   "http://localhost:5173",
   "http://localhost:5174",
+  process.env.FRONTEND_URL,
   "https://vercel-frontend-kohl-gamma.vercel.app",
-  "https://vercel-backend-1-13r6.onrender.com", // Add this
-];
+].filter(Boolean);
 // ✅ Global middleware
 app.use(
   cors({

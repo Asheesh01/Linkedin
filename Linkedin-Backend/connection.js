@@ -2,10 +2,11 @@
 const mongoose = require("mongoose");
 require("dotenv").config();
 
-const connectionString = process.env.CONNECTION_STRING;
+// Support both MONGODB_URI (Atlas/Render) and CONNECTION_STRING (local dev)
+const connectionString = process.env.MONGODB_URI || process.env.CONNECTION_STRING;
 
-console.log(`🔗 Connecting to MongoDB: ${connectionString}`);
+console.log(`🔗 Connecting to MongoDB...`);
 
 mongoose.connect(connectionString)
-  .then(() => console.log("✅ MongoDB connected successfully (Local - MongoDB Compass)"))
+  .then(() => console.log("✅ MongoDB connected successfully"))
   .catch((err) => console.error("❌ MongoDB connection error:", err));
