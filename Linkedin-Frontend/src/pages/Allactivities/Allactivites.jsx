@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+﻿import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from 'framer-motion';
 import ProfileCard from "../../Profilecard/profilecard";
 import Advertisment from "../../components/Advertisment/Advertisment";
 import { useParams } from "react-router-dom";
 import Card from "../../components/card/card";
 import Post from "../../components/Post/Post";
-import axios from "axios";
+import api from '../../api';
 import "./Allactivities.css"; // <-- added CSS file import
 
 export default function Allactivities() {
@@ -15,7 +15,7 @@ export default function Allactivities() {
     const [ownData, setOwnData] = useState(null);
 
     const fetchDataonLoad = async () => {
-        await axios.get(`${import.meta.env.VITE_APP_BACKEND_URL}/api/post/UserPost/${id}`).then(res => {
+        await api.get('/api/post/UserPost/${id}').then(res => {
             console.log(res);
             setPost(res.data.posts);
         }).catch(err => {

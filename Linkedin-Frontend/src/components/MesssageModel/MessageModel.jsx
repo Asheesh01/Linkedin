@@ -1,4 +1,4 @@
-import axios from "axios";
+﻿import api from '../../api';
 import React, { useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 
@@ -10,8 +10,8 @@ export default function MessageModal({ selfData, userData }) {
         if (!message.trim()) return toast.error('Please write a message first');
         setSending(true);
         try {
-            await axios.post(
-                `${import.meta.env.VITE_APP_BACKEND_URL}/api/conversation/add-conversation`,
+            await api.post(
+                '/api/conversation/add-conversation',
                 { recieverId: userData?._id, message },
                 { withCredentials: true }
             );

@@ -1,8 +1,8 @@
-import React, { useEffect, useState, useRef } from "react";
+﻿import React, { useEffect, useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Advertisment from "../../components/Advertisment/Advertisment";
 import Card from "../../components/card/card";
-import axios from "axios";
+import api from '../../api';
 import { toast, ToastContainer } from "react-toastify";
 import UploadFileIcon from "@mui/icons-material/UploadFile";
 import DescriptionIcon from "@mui/icons-material/Description";
@@ -68,8 +68,8 @@ export default function Resume() {
       if (!result.secure_url) throw new Error("Upload failed");
 
       // Save URL to backend
-      await axios.put(
-        `${import.meta.env.VITE_APP_BACKEND_URL}/api/auth/update`,
+      await api.put(
+        '/api/auth/update',
         { user: { resume: result.secure_url } },
         { withCredentials: true }
       );
@@ -108,8 +108,8 @@ export default function Resume() {
 
   const handleRemoveResume = async () => {
     try {
-      await axios.put(
-        `${import.meta.env.VITE_APP_BACKEND_URL}/api/auth/update`,
+      await api.put(
+        '/api/auth/update',
         { user: { resume: "" } },
         { withCredentials: true }
       );

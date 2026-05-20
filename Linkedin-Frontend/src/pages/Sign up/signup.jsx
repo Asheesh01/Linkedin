@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+﻿import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import GoogleLoginComp from "../../components/GoogleLogin/GoogleLogin";
 import { ToastContainer, toast } from "react-toastify";
-import axios from "axios";
+import api from '../../api';
 
 export default function Signup(props) {
     const navigate = useNavigate();
@@ -28,8 +28,8 @@ export default function Signup(props) {
         }
         setLoading(true);
         try {
-            await axios.post(
-                `${import.meta.env.VITE_APP_BACKEND_URL}/api/auth/register`,
+            await api.post(
+                '/api/auth/register',
                 registerField
             );
             toast.success("Account created! Please sign in.");

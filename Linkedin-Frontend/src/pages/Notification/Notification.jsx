@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
+﻿import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Card from "../../components/card/card";
 import Advertisment from "../../components/Advertisment/Advertisment";
 import ProfileCard from "../../Profilecard/profilecard";
-import axios from "axios";
+import api from '../../api';
 import { useNavigate } from "react-router-dom";
 
 export default function Notification() {
@@ -14,7 +14,7 @@ export default function Notification() {
 
     const fetchNotificationData = async () => {
         try {
-            const res = await axios.get(`${import.meta.env.VITE_APP_BACKEND_URL}/api/Notification`, { 
+            const res = await api.get('/api/Notification', { 
                 withCredentials: true 
             });
             setNotification(res.data.notification);
@@ -34,8 +34,8 @@ export default function Notification() {
 
     const handleOnClickNotification = async (item) => {
         try {
-            await axios.put(
-                `${import.meta.env.VITE_APP_BACKEND_URL}/api/Notification/isRead`,
+            await api.put(
+                '/api/Notification/isRead',
                 { notificationId: item._id },
                 { withCredentials: true }
             );

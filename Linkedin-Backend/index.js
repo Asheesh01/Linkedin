@@ -16,6 +16,7 @@ const allowedOrigins = [
   "http://localhost:5174",
   process.env.FRONTEND_URL,
   "https://vercel-frontend-kohl-gamma.vercel.app",
+  "https://linkedin-frontend-app-sepia.vercel.app",
 ].filter(Boolean);
 // ✅ Global middleware
 app.use(

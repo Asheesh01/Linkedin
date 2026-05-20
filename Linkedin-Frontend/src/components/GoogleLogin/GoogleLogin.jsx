@@ -1,6 +1,6 @@
-import React from "react";
+﻿import React from "react";
 import { GoogleLogin } from '@react-oauth/google';
-import axios from "axios";
+import api from '../../api';
 import {useNavigate} from 'react-router-dom'
 
 export default function GoogleLoginComp(props) {
@@ -8,8 +8,8 @@ export default function GoogleLoginComp(props) {
 
     const handleOnSuccess = async (credResponse) => {
         const token=credResponse.credential;
-       const res = await axios.post(
-  `${import.meta.env.VITE_APP_BACKEND_URL}/api/auth/google`,
+       const res = await api.post(
+  '/api/auth/google',
   { token },
   { withCredentials: true }
 );

@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: linkedin-backend
+    env: node
+    plan: free
+    buildCommand: npm install
+    startCommand: node index.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: CONNECTION_STRING
+        sync: false
+      - key: GOOGLE_CLIENT_ID
+        sync: false
+      - key: JWT_PRIVATE_KEY
+        sync: false
+      - key: FRONTEND_URL
+        sync: false

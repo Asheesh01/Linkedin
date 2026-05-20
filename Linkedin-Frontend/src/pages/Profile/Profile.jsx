@@ -13,7 +13,7 @@ import ExpModal from "../../components/expModal/expModal";
 import MessageModal from "../../components/MesssageModel/MessageModel";
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
 import { Link, useParams } from "react-router-dom";
-import axios from "axios";
+import api from '../../api';
 import { ToastContainer, toast } from "react-toastify";
 
 export default function Profile() {
@@ -48,9 +48,9 @@ export default function Profile() {
     const fetchDataonLoad = async () => {
         try {
             const [userDatas, postDatas, ownDatas] = await Promise.all([
-                axios.get(`${import.meta.env.VITE_APP_BACKEND_URL}/api/auth/user/${id}`),
-                axios.get(`${import.meta.env.VITE_APP_BACKEND_URL}/api/post/getTop5Post/${id}`),
-                axios.get(`${import.meta.env.VITE_APP_BACKEND_URL}/api/auth/self`, { withCredentials: true })
+                api.get(`/api/auth/user/${id}`),
+                api.get(`/api/post/getTop5Post/${id}`),
+                api.get('/api/auth/self', { withCredentials: true })
             ])
 
             setUserData(userDatas.data.user);
@@ -102,7 +102,7 @@ export default function Profile() {
     }
 
     const handleEditFunc = async (data) => {
-        await axios.put(`${import.meta.env.VITE_APP_BACKEND_URL}/api/auth/update`, { user: data }, { withCredentials: true }).then(res => {
+        await api.put('/api/auth/update', { user: data }, { withCredentials: true }).then(res => {
             window.location.reload();
 
         }).catch(err => {
@@ -149,7 +149,7 @@ export default function Profile() {
         if (checkFriendStatus() === "Request Sent") return;
 
         if (checkFriendStatus() === "Connect") {
-            await axios.post(`${import.meta.env.VITE_APP_BACKEND_URL}/api/auth/sendFriendReq`, 
+            await api.post('/api/auth/sendFriendReq', 
                 { receiver: userData?._id }, { withCredentials: true }).then(res => {
                 toast.success(res.data.message)
                 setTimeout(() => {
@@ -162,7 +162,7 @@ export default function Profile() {
             })
         }
         else if (checkFriendStatus() == "Approve Request") {
-            await axios.post(`${import.meta.env.VITE_APP_BACKEND_URL}/api/auth/acceptFriendRequest`,
+            await api.post('/api/auth/acceptFriendRequest',
                  { friendId: userData?._id }, { withCredentials: true }).then(res => {
                 toast.success(res.data.message)
                 setTimeout(() => {
@@ -174,8 +174,7 @@ export default function Profile() {
             })
         }
         else {
-            await axios.delete(`${import.meta.env.VITE_APP_BACKEND_URL}/api/auth/removeFromFriendList/$
-                {userData?._id}`, { withCredentials: true }).then(res => {
+            await api.delete(`/api/auth/removeFromFriendList/${userData?._id}`, { withCredentials: true }).then(res => {
                 toast.success(res.data.message)
                 setTimeout(() => {
                     window.location.reload();
@@ -188,7 +187,7 @@ export default function Profile() {
     }
 
     const handleLogout = async () => {
-        await axios.post(`${import.meta.env.VITE_APP_BACKEND_URL}/api/auth/logout`, {}, { withCredentials: true }).then((res => {
+        await api.post('/api/auth/logout', {}, { withCredentials: true }).then((res => {
             localStorage.clear();
             window.location.reload();
         })).catch(err => {
@@ -200,7 +199,7 @@ export default function Profile() {
 
     const copyToClipBoard = async () => {
         try {
-            let string = `${import.meta.env.VITE_APP_BACKEND_URL}/profile/${id}`
+            let string = `/profile/${id}`
             await navigator.clipboard.writeText(string);
             toast.success('copied to Clipboard')
         } catch (err) {

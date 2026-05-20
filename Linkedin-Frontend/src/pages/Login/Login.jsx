@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+﻿import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import GoogleLoginComp from "../../components/GoogleLogin/GoogleLogin";
 import { ToastContainer, toast } from "react-toastify";
-import axios from "axios";
+import api from '../../api';
 
 export default function Login(props) {
     const navigate = useNavigate();
@@ -21,8 +21,8 @@ export default function Login(props) {
         }
         setLoading(true);
         try {
-            const res = await axios.post(
-                `${import.meta.env.VITE_APP_BACKEND_URL}/api/auth/login`,
+            const res = await api.post(
+                '/api/auth/login',
                 loginField,
                 { withCredentials: true }
             );

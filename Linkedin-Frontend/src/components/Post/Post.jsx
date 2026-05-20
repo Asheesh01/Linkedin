@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+﻿import React, { useEffect, useState } from "react";
 import Card from "../card/card";
 import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
 import ThumbUpOutlinedIcon from '@mui/icons-material/ThumbUpOutlined';
 import CommentOutlinedIcon from '@mui/icons-material/CommentOutlined';
 import SendOutlinedIcon from '@mui/icons-material/SendOutlined';
 import { Link } from "react-router-dom";
-import axios from "axios";
+import api from '../../api';
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -21,8 +21,8 @@ export default function Post({ profile, item, personalData }) {
         e.preventDefault();
         if(commentInput.trim().length===0) return toast.error("Please Enter Something");
         try {
-            const response = await axios.post(
-                `${import.meta.env.VITE_APP_BACKEND_URL}/api/comment`,
+            const response = await api.post(
+                '/api/comment',
                 { postId: item._id, comment: commentInput },
                 { withCredentials: true }
             );
@@ -43,8 +43,8 @@ export default function Post({ profile, item, personalData }) {
 
     const handleLikeFunc = async () => {
         try {
-            await axios.post(
-                `${import.meta.env.VITE_APP_BACKEND_URL}/api/post/likeDislike`,
+            await api.post(
+                '/api/post/likeDislike',
                 { postId: item?._id },
                 { withCredentials: true }
             );
@@ -64,8 +64,8 @@ export default function Post({ profile, item, personalData }) {
     const handleCommentBoxOpenCLose = async () => {
         setComment(true);
         try {
-            const res = await axios.get(
-                `${import.meta.env.VITE_APP_BACKEND_URL}/api/comment/${item._id}`
+            const res = await api.get(
+                '/api/comment/${item._id}'
             );
             setComments(res.data.comments);
         } catch(err){
@@ -76,7 +76,7 @@ export default function Post({ profile, item, personalData }) {
 
     const copyToClipBoard = async () => {
         try{
-            let string = `${import.meta.env.VITE_APP_BACKEND_URL}/profile/${item?.user?._id}/activities/${item?._id}`;
+            let string = '/profile/${item?.user?._id}/activities/${item?._id}';
             await navigator.clipboard.writeText(string);
             toast.success('Copied to Clipboard');
         } catch(err){

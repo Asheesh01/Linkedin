@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+﻿import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import ProfileCard from "../../Profilecard/profilecard";
 import Card from "../../components/card/card";
 import Post from "../../components/Post/Post";
 import Advertisment from "../../components/Advertisment/Advertisment";
-import axios from "axios";
+import api from '../../api';
 import { useParams } from "react-router-dom";
 
 export default function SingleActivity() {
@@ -16,7 +16,7 @@ export default function SingleActivity() {
 
     const fetchDataOnLoad = async () => {
         try {
-            const res = await axios.get(`${import.meta.env.VITE_APP_BACKEND_URL}/api/post/getPostById/${postId}`);
+            const res = await api.get('/api/post/getPostById/${postId}');
             console.log(res);
             setPost(res.data.post);
         } catch (err) {

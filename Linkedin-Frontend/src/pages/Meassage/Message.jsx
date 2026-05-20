@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+﻿import React, { useEffect, useState, useRef } from 'react';
 
 // ── Avatar: shows profile pic or a coloured initial circle ──────────────────
 const Avatar = ({ src, name = '', size = 8, className = '' }) => {
@@ -32,7 +32,7 @@ import Conversation from '../../components/Conersatiosn/Converstion';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import ImageIcon from '@mui/icons-material/Image';
 import Advertisment from '../../components/Advertisment/Advertisment';
-import axios from 'axios';
+import api from '../../api';
 import { toast, ToastContainer } from 'react-toastify';
 import socket from '../../../socket';
 
@@ -67,8 +67,8 @@ export default function Message() {
 
   const fetchMessages = async () => {
     try {
-      const res = await axios.get(
-        `${import.meta.env.VITE_APP_BACKEND_URL}/api/message/${activeConID}`,
+      const res = await api.get(
+        '/api/message/${activeConID}',
         { withCredentials: true }
       );
       setMeesages(res.data.messages || []);
@@ -85,16 +85,16 @@ export default function Message() {
   const fetchConversationonLoad = async () => {
     try {
       // Fetch own user data fresh from backend (not stale localStorage)
-      const selfRes = await axios.get(
-        `${import.meta.env.VITE_APP_BACKEND_URL}/api/auth/self`,
+      const selfRes = await api.get(
+        '/api/auth/self',
         { withCredentials: true }
       );
       const freshOwnData = selfRes.data.user;
       setOwnData(freshOwnData);
       localStorage.setItem('userInfo', JSON.stringify(freshOwnData));
 
-      const res = await axios.get(
-        `${import.meta.env.VITE_APP_BACKEND_URL}/api/conversation/get-conversation`,
+      const res = await api.get(
+        '/api/conversation/get-conversation',
         { withCredentials: true }
       );
       const convList = res.data.conversastion || [];
@@ -156,8 +156,8 @@ export default function Message() {
     if (!messagetext.trim() && !imageLink) return;
 
     try {
-      const res = await axios.post(
-        `${import.meta.env.VITE_APP_BACKEND_URL}/api/message`,
+      const res = await api.post(
+        '/api/message',
         {
           conversation: activeConID,
           message: messagetext,
@@ -195,8 +195,8 @@ export default function Message() {
   // Delete message function
   const handleDeleteMessage = async (messageId) => {
     try {
-      await axios.delete(
-        `${import.meta.env.VITE_APP_BACKEND_URL}/api/message/${messageId}`,
+      await api.delete(
+        '/api/message/${messageId}',
         { withCredentials: true }
       );
 

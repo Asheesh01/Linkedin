@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+﻿import React, { useState, useEffect, useRef } from "react";
 import './Navbar2.css'
 import HomeIcon from '@mui/icons-material/Home';
 import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
@@ -6,7 +6,7 @@ import WorkIcon from '@mui/icons-material/Work';
 import MessageIcon from '@mui/icons-material/Message';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import { Link, useLocation } from "react-router-dom";
-import axios from "axios";
+import api from '../../api';
 
 export default function Navbar2() {
   const location = useLocation();
@@ -36,8 +36,8 @@ export default function Navbar2() {
 
   const searchAPICall = async () => {
     try {
-      const res = await axios.get(
-        `${import.meta.env.VITE_APP_BACKEND_URL}/api/auth/findUser?query=${debouncedTerm}`,
+      const res = await api.get(
+        '/api/auth/findUser?query=${debouncedTerm}',
         { withCredentials: true }
       );
       setSearchUser(res.data.user);
@@ -49,8 +49,8 @@ export default function Navbar2() {
 
   const fetchNotification = async () => {
     try {
-      const res = await axios.get(
-        `${import.meta.env.VITE_APP_BACKEND_URL}/api/Notification/aciveNotification`,
+      const res = await api.get(
+        '/api/Notification/aciveNotification',
         { withCredentials: true }
       );
       setNotificationcount(res.data.count);

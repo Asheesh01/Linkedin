@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+﻿import { useState, useEffect } from 'react'
 import Navbar from './components/NavBar1/NavBar1'
 import Landing from './pages/Landingpage/Landingpage'
 import Footer from './components/Footer/footer'
@@ -14,7 +14,7 @@ import Profile from './pages/Profile/Profile'
 import Allactivities from './pages/Allactivities/Allactivites'
 import SingleActivity from './pages/Singleactivity/SingleActivity'
 import Notification from './pages/Notification/Notification'
-import axios from 'axios'
+import api from './api';
 
 function App() {
   const [isLogin, setIsLogin] = useState(null); // null = still checking
@@ -24,8 +24,8 @@ function App() {
   useEffect(() => {
     const verifyAuth = async () => {
       try {
-        await axios.get(
-          `${import.meta.env.VITE_APP_BACKEND_URL}/api/auth/self`,
+        await api.get(
+          '/api/auth/self',
           { withCredentials: true }
         );
         setIsLogin(true);

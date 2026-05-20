@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+﻿import React, { useState, useEffect, useRef } from "react";
 import ProfileCard from "../../Profilecard/profilecard";
 import Card from "../../components/card/card";
 import OndemandVideoIcon from '@mui/icons-material/OndemandVideo';
@@ -9,7 +9,7 @@ import Post from "../../components/Post/Post";
 import Model from "../../components/Model/Model";
 import AddModel from "../../components/Advertisment/AddModel";
 import Loadr from "../../components/Loader/Loader";
-import axios from "axios";
+import api from '../../api';
 import { ToastContainer, toast } from "react-toastify";
 import { motion } from "framer-motion";
 
@@ -21,13 +21,13 @@ export default function Feeds() {
 
   const fetchData = async () => {
     try {
-      const userData = await axios.get(
-        `${import.meta.env.VITE_APP_BACKEND_URL}/api/auth/self`,
+      const userData = await api.get(
+        '/api/auth/self',
         { withCredentials: true }
       );
 
-      const postData = await axios.get(
-        `${import.meta.env.VITE_APP_BACKEND_URL}/api/post/getAllPost/${userData.data.user._id}`
+      const postData = await api.get(
+        '/api/post/getAllPost/${userData.data.user._id}'
       );
 
       setPersonaltData(userData.data.user);

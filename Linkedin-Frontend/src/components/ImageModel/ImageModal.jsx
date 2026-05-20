@@ -1,4 +1,4 @@
-import axios from "axios";
+﻿import api from '../../api';
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 import React, { useState } from "react";

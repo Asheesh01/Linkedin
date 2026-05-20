@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+﻿import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import ProfileCard from "../../Profilecard/profilecard";
-import axios from "axios";
+import api from '../../api';
 
 export default function MyNetwork() {
     const [text, setText] = useState("Catch Up With Friends");
@@ -16,7 +16,7 @@ export default function MyNetwork() {
     };
 
     const fetchfriendList = async () => {
-        await axios.get(`${import.meta.env.VITE_APP_BACKEND_URL}/api/auth/friendList`, { withCredentials: true })
+        await api.get('/api/auth/friendList', { withCredentials: true })
             .then((res) => {
                 console.log(res);
                 setData(res.data.friends);
@@ -28,7 +28,7 @@ export default function MyNetwork() {
     };
 
     const fetchPendingRequest = async () => {
-        await axios.get(`${import.meta.env.VITE_APP_BACKEND_URL}/api/auth/pendingfriendList`, { withCredentials: true })
+        await api.get('/api/auth/pendingfriendList', { withCredentials: true })
             .then((res) => {
                 console.log(res);
                 setData(res.data.pending_friends);

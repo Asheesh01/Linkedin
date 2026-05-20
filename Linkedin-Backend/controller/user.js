@@ -5,11 +5,13 @@ const NotificationModal = require('../model/Notification');
 const { OAuth2Client } = require('google-auth-library');
 const jwt = require("jsonwebtoken");
 
-const isProduction = process.env.NODE_ENV === 'production';
+// Vercel always runs on HTTPS; cross-domain cookies require Secure + SameSite=None
+const isVercel = !!process.env.VERCEL;
+const isProduction = process.env.NODE_ENV === 'production' || isVercel;
 const cookieOptions = {
     httpOnly: true,
-    secure: isProduction,         // false on localhost, true in production
-    sameSite: isProduction ? 'None' : 'Lax'  // Lax works on localhost
+    secure: isProduction,         // Must be true for SameSite=None to work
+    sameSite: isProduction ? 'None' : 'Lax'  // None required for cross-domain (Vercel)
 };
 
 const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);

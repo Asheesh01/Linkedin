@@ -1,7 +1,7 @@
-    import React, { useState } from "react";
+﻿    import React, { useState } from "react";
     import ImageIcon from '@mui/icons-material/Image';
     import { ToastContainer, toast } from "react-toastify";
-    import axios from "axios";
+    import api from '../../api';
     export default function AddModel(props) {
 
       const [imageUrl, setImageUrl] = useState(null);
@@ -10,8 +10,8 @@
   if (desc.trim().length === 0 && !imageUrl) return toast.error("Please enter any field");
 
   try {
-    await axios.post(
-      `${import.meta.env.VITE_APP_BACKEND_URL}/api/post`,
+    await api.post(
+      '/api/post',
       { desc: desc, image: imageUrl },
       { withCredentials: true }
     );
