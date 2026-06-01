@@ -29,7 +29,6 @@ exports.loginThroughGmail = async (req, res) => {
         let userExists = await User.findOne({ email });
         if (!userExists) {
             userExists = await User.create({
-
                 googleId: sub,
                 email,
                 f_name: name,
